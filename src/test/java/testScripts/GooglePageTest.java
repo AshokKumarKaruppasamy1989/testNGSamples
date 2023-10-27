@@ -11,6 +11,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
@@ -20,19 +21,27 @@ import org.testng.annotations.Test;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
+import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
+import com.aventstack.extentreports.reporter.configuration.ViewName;
+
+import commonUtils.Utility;
 
 public class GooglePageTest {
 	WebDriver driver;
-	
+
 	ExtentReports reports;
 	ExtentSparkReporter spark;
 	ExtentTest test;
-	
+
 	@BeforeTest
 	public void setupExtent() {
 		reports = new ExtentReports();
-		spark = new ExtentSparkReporter("target/spark.html");
+//		spark = new ExtentSparkReporter("target/spark.html");
+		spark = new ExtentSparkReporter("target/spark.html").viewConfigurer().viewOrder().as(
+				new ViewName[] { ViewName.DASHBOARD, ViewName.TEST, ViewName.AUTHOR, ViewName.DEVICE, ViewName.LOG })
+				.apply();
 		reports.attachReporter(spark);
 	}
 
@@ -52,22 +61,23 @@ public class GooglePageTest {
 		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
 	}
 
-	@Test(alwaysRun = true, dependsOnMethods = "seleniumSearchTest")
+//	@Test(alwaysRun = true, dependsOnMethods = "seleniumSearchTest")
+	@Test(retryAnalyzer = MyRetryAnalyzer.class)
 	public void javaSearchTest() {
-		
+
 		test = reports.createTest("javaSearchTest");
 //		WebDriver driver = new ChromeDriver();
 		driver.navigate().to("https://www.google.com");
 		WebElement search = driver.findElement(By.id("APjFqb"));
 		search.sendKeys("Java Tutorial");
 		search.submit();
-		Assert.assertEquals(driver.getTitle(), "Java Tutorial - Google Search");
+		Assert.assertEquals(driver.getTitle(), "Java Tutorial - Google Search page");
 //		driver.close();
 	}
 
 	@Test
 	public void seleniumSearchTest() throws InterruptedException {
-		
+
 		test = reports.createTest("seleniumSearchTest");
 //		WebDriver driver = new ChromeDriver();
 		driver.navigate().to("https://www.google.com");
@@ -121,10 +131,19 @@ public class GooglePageTest {
 
 	@AfterMethod
 //	@AfterTest
-	public void closeDriver() {
+	public void closeDriver(ITestResult result) {
+
+		test.assignAuthor("Ashok").assignCategory("Regression").assignDevice(System.getProperty("os.name"))
+				.assignDevice(System.getProperty("os.version"));
+
+		if (ITestResult.FAILURE == result.getStatus()) {
+			test.log(Status.FAIL, result.getThrowable().getMessage());
+			String path = Utility.getScreenShotPath(driver);
+			test.fail(MediaEntityBuilder.createScreenCaptureFromPath(path).build());
+		}
 		driver.close();
 	}
-	
+
 	@AfterTest
 	public void finishReport() {
 		reports.flush();
