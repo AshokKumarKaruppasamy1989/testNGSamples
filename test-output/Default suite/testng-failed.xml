@@ -3,16 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="testScripts.GooglePageTest">
+      <class name="testScripts.LoginPageTest">
         <methods>
+          <include name="setUp"/>
           <include name="closeDriver"/>
-          <include name="finishReport"/>
-          <include name="javaSearchTest"/>
-          <include name="seleniumSearchTest"/>
-          <include name="setupExtent"/>
-          <include name="driverSetup"/>
+          <include name="validLogin"/>
         </methods>
-      </class> <!-- testScripts.GooglePageTest -->
+      </class> <!-- testScripts.LoginPageTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

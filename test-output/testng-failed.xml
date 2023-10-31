@@ -1,18 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite thread-count="2" parallel="tests" name="Failed suite [SampleSuite]" guice-stage="DEVELOPMENT">
-  <parameter name="browser" value="chrome"/>
-  <test thread-count="2" parallel="tests" name="ModuleOneTest(failed)">
+<suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
+  <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="testScripts.GooglePageTest">
+      <class name="testScripts.LoginPageTest">
         <methods>
+          <include name="setUp"/>
           <include name="closeDriver"/>
-          <include name="finishReport"/>
-          <include name="javaSearchTest"/>
-          <include name="setupExtent"/>
-          <include name="driverSetup"/>
+          <include name="validLogin"/>
         </methods>
-      </class> <!-- testScripts.GooglePageTest -->
+      </class> <!-- testScripts.LoginPageTest -->
     </classes>
-  </test> <!-- ModuleOneTest(failed) -->
-</suite> <!-- Failed suite [SampleSuite] -->
+  </test> <!-- Default test(failed) -->
+</suite> <!-- Failed suite [Default suite] -->
