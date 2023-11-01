@@ -65,28 +65,28 @@ public class LoginPageTest {
 		Assert.assertTrue(displayed);
 	}
 	
-	public Object[][] getDataCSV() throws IOException, ParseException {
-		String path = System.getProperty("user.dir") + "//src//test//resources//loginData.csv";
-
-		CSVReader reader = new CSVReader(new FileReader(path));
-		reader.readNext();
-
-		Object obj = reader.parse(file);
-		JSONObject jsonObj = (JSONObject) obj;
-		JSONArray userArray = (JSONArray) jsonObj.get("userLogins");
-		String arr[][] = new String[userArray.size()][];
-
-		for (int i = 0; i < userArray.size(); i++) {
-			JSONObject user = (JSONObject) userArray.get(i);
-			String strUser = (String) user.get("username");
-			String strPwd = (String) user.get("password");
-			System.out.println("username : " + strUser);
-			System.out.println("password : " + strPwd);
-			String record[] = { strUser, strPwd };
-			arr[i] = record;
-		}
-		return arr;
-	}
+//	public Object[][] getDataCSV() throws IOException, ParseException {
+//		String path = System.getProperty("user.dir") + "//src//test//resources//loginData.csv";
+//
+//		CSVReader reader = new CSVReader(new FileReader(path));
+//		reader.readNext();
+//
+//		Object obj = reader.parse(file);
+//		JSONObject jsonObj = (JSONObject) obj;
+//		JSONArray userArray = (JSONArray) jsonObj.get("userLogins");
+//		String arr[][] = new String[userArray.size()][];
+//
+//		for (int i = 0; i < userArray.size(); i++) {
+//			JSONObject user = (JSONObject) userArray.get(i);
+//			String strUser = (String) user.get("username");
+//			String strPwd = (String) user.get("password");
+//			System.out.println("username : " + strUser);
+//			System.out.println("password : " + strPwd);
+//			String record[] = { strUser, strPwd };
+//			arr[i] = record;
+//		}
+//		return arr;
+//	}
 
 //	@DataProvider(name = "loginData")
 	public String[][] getData() throws IOException, ParseException {

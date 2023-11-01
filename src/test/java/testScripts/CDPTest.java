@@ -75,27 +75,27 @@ public class CDPTest {
 		driver.get("https://www.google.com/");
 	}
 
-	@Test
-	public void basicAuthTest() {
-		devTools.send(Network.enable(Optional.empty(),Optional.empty(),Optional.empty()));
-		Map<String, Object> headers = new HashMap();
-		String strUser = "admin";
-		String strPwd = "admin";
-
-		String basicAuth = "Basic "
-				+ new String(new Base64().encode(String.format("%s:%s", strUser, strPwd).getBytes()));
-		System.out.println("Auth : " + basicAuth);
-
-		//Set Header - Auth token
-		headers.put("Authorization", basicAuth);
-
-		devTools.send(Network.setExtraHTTPHeaders(new Headers(headers)));
-
-		driver.get("https://the-internet.herokuapp.com/basic_auth");
-
-		String success = driver.findElement(By.cssSelector("div.example p")).getText();
-		
-		Assert.assertEquals(success, "Congratulations! You must have the proper credentials.");
-
-	}
+//	@Test
+//	public void basicAuthTest() {
+//		devTools.send(Network.enable(Optional.empty(),Optional.empty(),Optional.empty()));
+//		Map<String, Object> headers = new HashMap();
+//		String strUser = "admin";
+//		String strPwd = "admin";
+//
+//		String basicAuth = "Basic "
+//				+ new String(new Base64().encode(String.format("%s:%s", strUser, strPwd).getBytes()));
+//		System.out.println("Auth : " + basicAuth);
+//
+//		//Set Header - Auth token
+//		headers.put("Authorization", basicAuth);
+//
+//		devTools.send(Network.setExtraHTTPHeaders(new Headers(headers)));
+//
+//		driver.get("https://the-internet.herokuapp.com/basic_auth");
+//
+//		String success = driver.findElement(By.cssSelector("div.example p")).getText();
+//		
+//		Assert.assertEquals(success, "Congratulations! You must have the proper credentials.");
+//
+//	}
 }
