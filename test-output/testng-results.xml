@@ -1,25 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+<testng-results ignored="0" total="3" passed="3" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2023-10-31T09:48:25 GMT" name="Default suite" finished-at="2023-10-31T09:48:32 GMT" duration-ms="6593">
+  <suite started-at="2024-04-10T08:53:40 IST" name="Default suite" finished-at="2024-04-10T08:54:24 IST" duration-ms="44392">
     <groups>
     </groups>
-    <test started-at="2023-10-31T09:48:25 GMT" name="Default test" finished-at="2023-10-31T09:48:32 GMT" duration-ms="6593">
-      <class name="testScripts.LoginPageTest">
-        <test-method is-config="true" signature="setUp()[pri:0, instance:testScripts.LoginPageTest@57af006c]" started-at="2023-10-31T09:48:25 GMT" name="setUp" finished-at="2023-10-31T09:48:28 GMT" duration-ms="2958" status="PASS">
+    <test started-at="2024-04-10T08:53:40 IST" name="Default test" finished-at="2024-04-10T08:54:24 IST" duration-ms="44392">
+      <class name="testScripts.ExcelObjectTest">
+        <test-method is-config="true" signature="setUP()[pri:0, instance:testScripts.ExcelObjectTest@563f38c4]" started-at="2024-04-10T08:53:54 IST" name="setUP" finished-at="2024-04-10T08:54:01 IST" duration-ms="7295" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- setUp -->
-        <test-method signature="validLogin()[pri:0, instance:testScripts.LoginPageTest@57af006c]" started-at="2023-10-31T09:48:28 GMT" name="validLogin" finished-at="2023-10-31T09:48:32 GMT" duration-ms="3481" status="PASS">
+        </test-method> <!-- setUP -->
+        <test-method signature="validLogin(java.lang.String,java.lang.String)[pri:0, instance:testScripts.ExcelObjectTest@563f38c4]" started-at="2024-04-10T08:54:01 IST" name="validLogin" data-provider="loginData" finished-at="2024-04-10T08:54:02 IST" duration-ms="1029" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[tomsmith]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[SuperSecretPassword!]]>
+              </value>
+            </param>
+          </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- validLogin -->
-        <test-method is-config="true" signature="closeDriver()[pri:0, instance:testScripts.LoginPageTest@57af006c]" started-at="2023-10-31T09:48:32 GMT" name="closeDriver" finished-at="2023-10-31T09:48:32 GMT" duration-ms="108" status="PASS">
+        <test-method is-config="true" signature="driverClose()[pri:0, instance:testScripts.ExcelObjectTest@563f38c4]" started-at="2024-04-10T08:54:02 IST" name="driverClose" finished-at="2024-04-10T08:54:07 IST" duration-ms="4337" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- closeDriver -->
-      </class> <!-- testScripts.LoginPageTest -->
+        </test-method> <!-- driverClose -->
+        <test-method is-config="true" signature="setUP()[pri:0, instance:testScripts.ExcelObjectTest@563f38c4]" started-at="2024-04-10T08:54:07 IST" name="setUP" finished-at="2024-04-10T08:54:11 IST" duration-ms="4981" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUP -->
+        <test-method signature="validLogin(java.lang.String,java.lang.String)[pri:0, instance:testScripts.ExcelObjectTest@563f38c4]" started-at="2024-04-10T08:54:11 IST" name="validLogin" data-provider="loginData" finished-at="2024-04-10T08:54:13 IST" duration-ms="1019" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[testuser1]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[welcome123]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- validLogin -->
+        <test-method is-config="true" signature="driverClose()[pri:0, instance:testScripts.ExcelObjectTest@563f38c4]" started-at="2024-04-10T08:54:13 IST" name="driverClose" finished-at="2024-04-10T08:54:15 IST" duration-ms="2844" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- driverClose -->
+        <test-method is-config="true" signature="setUP()[pri:0, instance:testScripts.ExcelObjectTest@563f38c4]" started-at="2024-04-10T08:54:15 IST" name="setUP" finished-at="2024-04-10T08:54:20 IST" duration-ms="5015" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUP -->
+        <test-method signature="validLogin(java.lang.String,java.lang.String)[pri:0, instance:testScripts.ExcelObjectTest@563f38c4]" started-at="2024-04-10T08:54:20 IST" name="validLogin" data-provider="loginData" finished-at="2024-04-10T08:54:21 IST" duration-ms="1010" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[testuser2]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[welcome123]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- validLogin -->
+        <test-method is-config="true" signature="driverClose()[pri:0, instance:testScripts.ExcelObjectTest@563f38c4]" started-at="2024-04-10T08:54:21 IST" name="driverClose" finished-at="2024-04-10T08:54:24 IST" duration-ms="2896" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- driverClose -->
+      </class> <!-- testScripts.ExcelObjectTest -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

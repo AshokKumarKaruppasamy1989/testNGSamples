@@ -3,6 +3,15 @@
 <suite name="SampleSuite" thread-count="2" parallel="tests">
 	<parameter name="browser" value="chrome" />
 	<test name="ModuleOneTest">
+		<groups>
+			<define name="SmokeTest">
+				<include name="featureone" />
+				<include name="featuretwo" />
+			</define>
+			<run>
+				<include name="SmokeTest" />
+			</run>
+		</groups>
 		<classes>
 			<class name="testScripts.GooglePageTest" />
 		</classes>
