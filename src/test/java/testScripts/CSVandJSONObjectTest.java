@@ -1,10 +1,12 @@
 package testScripts;
 
+import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.time.Duration;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
 
@@ -28,7 +30,7 @@ import org.testng.annotations.Test;
 
 import com.opencsv.CSVReader;
 
-public class LoginPageTest {
+public class CSVandJSONObjectTest {
 
 	WebDriver driver;
 	Properties prop;
@@ -62,6 +64,7 @@ public class LoginPageTest {
 		driver.get(prop.getProperty("url"));
 		driver.findElement(By.cssSelector("input#username")).sendKeys(strUser);
 		driver.findElement(By.id("password")).sendKeys(strPwd);
+		System.out.println("Username : " + strUser + " & Password : " + strPwd);
 		driver.findElement(By.xpath("//i[@class='fa fa-2x fa-sign-in']")).click();
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div.flash.success")));
@@ -70,28 +73,43 @@ public class LoginPageTest {
 		Assert.assertTrue(displayed);
 	}
 	
-//	@DataProvider(name = "loginData")
-//	public Object[][] getDataExcel() throws IOException, ParseException {
+	@DataProvider(name = "loginData")
+	public Object[][] getDataCSV() throws IOException {
 //		String path = System.getProperty("user.dir") + "//src//test//resources//configfiles//loginData.csv";
-//
-//		
-//		while(reader.readNext() != null) {
-//			String strUser = reader
-//			String strPwd = (String) user.get("password");
-//		}
-//		
-//		String[] nextRecord;
-//		String arr[][] = new String[reader.size()][];
-//		
-//		while((nextRecord = reader.readNext()) != null) {
-//			for (String cell: nextRecord) {
-//				System.out.println(cell);
-//			}
-//		}
-//	}
+		
+		int numRow = 0;
+		int numCol = 0;
+
+		/* Get the number of rows */
+		BufferedReader br = new BufferedReader(new FileReader("loginData.csv"));		
+		while(br.readLine() != null) {
+			numRow++;
+		}
+		
+		/* Get the number of columns */
+		CSVReader reader = new CSVReader(new FileReader("loginData.csv"));
+		Iterator<String[]> csvCell = reader.iterator();
+		numCol = csvCell.next().length;
+		
+		Object data[][] = new Object[numRow][numCol];
+		
+		reader = new CSVReader(new FileReader("loginData.csv"));
+		csvCell = reader.iterator();
+		int j=0;
+		for(int i = 0; i < numRow; i++) {
+			String[] row = csvCell.next();
+			for(String val: row) {
+				data[i][j] = val;
+				j++;
+			}
+		j = 0;
+		}
+		br.close();
+		return data;
+	}
 
 //	@DataProvider(name = "loginData")
-	public String[][] getData() throws IOException, ParseException {
+	public String[][] getDataJson() throws IOException, ParseException {
 		String path = System.getProperty("user.dir") + "//src//test//resources//configfiles//loginData.json";
 		FileReader file = new FileReader(path);
 		JSONParser parser = new JSONParser();

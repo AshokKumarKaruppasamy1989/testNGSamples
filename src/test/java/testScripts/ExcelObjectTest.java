@@ -1,6 +1,8 @@
 package testScripts;
 
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.time.Duration;
 
@@ -39,13 +41,17 @@ public class ExcelObjectTest {
 
 	}
 
+//	HSSFWorkbook is used to read and write .xls format
+//	XSSFWorkbook is used to read and write .xlsx format
+
 	@DataProvider(name = "loginData")
 	public String[][] getDataFromExcel() throws IOException {
 
-		String path = "C:\\Users\\Ashok\\Desktop\\loginDataLocal.xlt";
-		FileInputStream file = new FileInputStream(path);
+//		String path = "C:\\Users\\Ashok\\Desktop\\loginDataLocal.xlt";
+		File file = new File("loginData.xls");
+		FileInputStream fis = new FileInputStream(file);
 
-		HSSFWorkbook workbook = new HSSFWorkbook(file);
+		HSSFWorkbook workbook = new HSSFWorkbook(fis);
 		HSSFSheet sheet = workbook.getSheet("loginData");
 		String strUser = "";
 		String strPwd = "";
@@ -67,15 +73,16 @@ public class ExcelObjectTest {
 		}
 
 		workbook.close();
-		file.close();
+		fis.close();
 		return arr;
 
 	}
 
+//	@DataProvider(name = "loginData")
 //	public String readObjPathXSSF(String objName) throws IOException {
 //		String objPath = "";
 //
-//		String path = "C:\\Users\\Ashok\\Desktop\\loginDataLocal.xlt";
+//		String path = "C:\\Users\\Ashok\\Desktop\\loginDataLocal.xlsx";
 //		FileInputStream file = new FileInputStream(path);
 //
 //		XSSFWorkbook workbook = new XSSFWorkbook(file);
